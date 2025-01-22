@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
-               git branch: 'main', url: 'https://github.com/ashokitschool/01_products_api.git'
+               git branch: 'main', url: 'https://github.com/shubham-0211/01_products_api_Backend.git'
             }
         }
         stage('Maven Build'){
@@ -18,14 +18,14 @@ pipeline {
         }
         stage('Docker Image'){
             steps{
-             sh 'docker build -t ashokit/products_api .'
+             sh 'docker build -t shubhamghongade/products_api .'
             }
         }
         stage('Docker Image push'){
             steps{
             withCredentials([string(credentialsId: 'docker_pwd', variable: 'docker_pwd')]) {
-                   sh 'docker login -u ashokit -p ${docker_pwd}'
-                   sh 'docker push ashokit/products_api'
+                   sh 'docker login -u shubhamghongade -p ${docker_pwd}'
+                   sh 'docker push shubhamghongade/products_api'
             }
             }
         }
